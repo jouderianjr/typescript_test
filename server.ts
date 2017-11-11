@@ -2,6 +2,16 @@ const pgPromise = require('pg-promise');
 const R         = require('ramda');
 const request   = require('request-promise');
 
+const args = process.argv;
+
+if( args.length !== 3 ) {
+  console.error('Username parameter is missing');
+  console.error('Command usage: npm run test -- username');
+  process.exit(1);
+}
+
+const username : String = R.last(args);
+
 // Limit the amount of debugging of SQL expressions
 const trimLogsSize : number = 200;
 
@@ -48,7 +58,7 @@ const db = pgp(options);
 
 db.none('CREATE TABLE IF NOT EXISTS github_users (id BIGSERIAL, login TEXT, name TEXT, company TEXT)')
 .then(() => request({
-  uri: 'https://api.github.com/users/gaearon',
+  uri: `https://api.github.com/users/${username}`,
   headers: {
         'User-Agent': 'Request-Promise'
     },
