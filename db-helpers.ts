@@ -39,6 +39,6 @@ const createTable = (dbConnection) : PromiseLike<any> =>
   dbConnection.none('CREATE TABLE IF NOT EXISTS github_users (id BIGSERIAL, login TEXT, name TEXT, company TEXT)')
 
 const insertGithubUser = (dbConnection, user : GithubUsers) :  PromiseLike<any> =>
-  dbConnection.one( 'INSERT INTO github_users (login) VALUES ($[login]) RETURNING id', user);
+  dbConnection.one( 'INSERT INTO github_users (login, name, company) VALUES ($[login], $[name], $[company]) RETURNING id', user);
 
 export { createDbConnection, createTable, insertGithubUser };
