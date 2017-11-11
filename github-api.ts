@@ -8,7 +8,6 @@ const fetchUser = (username : String) : PromiseLike<GithubUsers> =>
     json: true
   });
 
-
 export default {
   fetchUser
 }
