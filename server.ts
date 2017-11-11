@@ -1,6 +1,7 @@
-const pgPromise = require('pg-promise');
-const R         = require('ramda');
-const request   = require('request-promise');
+import { DBOptions, GithubUsers } from './module';
+import * as R from 'ramda';
+import * as pgPromise from 'pg-promise';
+import * as request from 'request-promise';
 
 const args = process.argv;
 
@@ -15,19 +16,10 @@ const username : String = R.last(args);
 // Limit the amount of debugging of SQL expressions
 const trimLogsSize : number = 200;
 
-// Database interface
-interface DBOptions
-  { host      : string
-  , database  : string
-  , user?     : string
-  , password? : string
-  , port?     : number
-  };
-
 // Actual database options
 const options : DBOptions = {
-  // user: ,
-  // password: ,
+  user: 'lovely',
+  password: 'lovely',
   host: 'localhost',
   database: 'lovelystay_test',
 };
@@ -48,10 +40,6 @@ const pgpDefaultConfig = {
     }
   }
 };
-
-interface GithubUsers
-  { id : number
-  };
 
 const pgp = pgPromise(pgpDefaultConfig);
 const db = pgp(options);
