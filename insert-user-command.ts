@@ -13,10 +13,15 @@ const missingUsernameError = () =>
     Command usage: npm run test -- username
   `);
 
+const userNotFoundError = () =>
+  errorHandler(`
+    User not found
+  `);
+
 const fetchAndInsertUser = (db, username) =>
   githubApi
     .fetchUser(username)
-    .then((data: GithubUsers) => insertGithubUser(db, data));
+    .then((data: GithubUsers) => insertGithubUser(db, data), userNotFoundError);
 
 const insertUser = (username : String) => {
   const db = createDbConnection();
