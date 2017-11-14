@@ -1,4 +1,4 @@
-export interface GithubUsers { 
+export interface GithubUser {
   id : number;
   location? : String;
   login? : String;

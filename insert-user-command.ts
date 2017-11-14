@@ -1,5 +1,5 @@
 import * as R from 'ramda';
-import { GithubUsers } from './module';
+import { GithubUser } from './module';
 import { createDbConnection, createTable, insertGithubUser, findGithubUserByLogin } from './db-helpers';
 import githubApi from './github-api';
 
@@ -21,7 +21,7 @@ const userNotFoundError = () =>
 const fetchAndInsertUser = (db, username) =>
   githubApi
     .fetchUser(username)
-    .then((data: GithubUsers) => insertGithubUser(db, data), userNotFoundError);
+    .then((data: GithubUser) => insertGithubUser(db, data), userNotFoundError);
 
 const insertUser = (username : String) => {
   const db = createDbConnection();

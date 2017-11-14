@@ -1,11 +1,11 @@
 import * as R from 'ramda';
 import { createDbConnection, getLisbonUsers } from './db-helpers';
-import { GithubUsers } from './module';
+import { GithubUser } from './module';
 
-const showUsers = (users: Array<GithubUsers>) => {
+const showUsers = (users: Array<GithubUser>) => {
   console.log(`${users.length} user${users.length > 0? 's' : ''} found.`);
   console.log(
-    users.reduce((acc, {login} : GithubUsers) =>
+    users.reduce((acc, {login} : GithubUser) =>
       `${acc}${login}\n`
     , '')
   );
