@@ -1,5 +1,10 @@
 export interface GithubUsers { 
   id : number;
+  location? : String;
+  login? : String;
+  name? : String;
+  company? : String;
+
 }
 
 export interface DBOptions { 
