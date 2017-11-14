@@ -11,8 +11,7 @@ const showUsers = (response: Array<any>) => {
   process.exit(0);
 }
 
-const showLocationStats = () => {
-  const db = createDbConnection();
+const showLocationStats = db => {
   getUsersByLocation(db)
     .then(showUsers);
 }

@@ -12,8 +12,7 @@ const showUsers = (users: Array<GithubUser>) => {
   process.exit(0);
 }
 
-const showLisbonUsers = () => {
-  const db = createDbConnection();
+const showLisbonUsers = db => {
   getLisbonUsers(db)
     .then(showUsers);
 }

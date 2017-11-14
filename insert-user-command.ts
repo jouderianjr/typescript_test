@@ -23,11 +23,8 @@ const fetchAndInsertUser = (db, username) =>
     .fetchUser(username)
     .then((data: GithubUser) => insertGithubUser(db, data), userNotFoundError);
 
-const insertUser = (username : String) => {
-  const db = createDbConnection();
-
-  createTable(db)
-    .then(() => findGithubUserByLogin(db, username))
+const insertUser = (username : String, db) => {
+  findGithubUserByLogin(db, username)
     .then(({count}) =>
       R.cond([
         [R.equals('0'), () => fetchAndInsertUser(db, username)],
