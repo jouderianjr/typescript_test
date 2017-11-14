@@ -47,4 +47,7 @@ const findGithubUserByLogin = (dbConnection, login : String) : PromiseLike<any> 
 const getLisbonUsers = (dbConnection) : PromiseLike<Array<GithubUsers>> =>
   dbConnection.query( 'SELECT * from github_users where location ILIKE \'%lisbon%\'');
 
-export { createDbConnection, createTable, insertGithubUser, findGithubUserByLogin, getLisbonUsers };
+const getUsersByLocation = (dbConnection) : PromiseLike<any> =>
+  dbConnection.query( 'SELECT count(id), location from github_users GROUP BY location');
+
+export { createDbConnection, createTable, insertGithubUser, findGithubUserByLogin, getLisbonUsers, getUsersByLocation };

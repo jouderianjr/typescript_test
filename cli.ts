@@ -1,6 +1,7 @@
 import * as R from 'ramda';
 import insertUserCommand from './insert-user-command';
 import showLisbonUsersCommand from './lisbon-users-command';
+import showLocationStats from './location-stats-command';
 
 const showHelpMessage = () =>
   console.log(`
@@ -9,7 +10,7 @@ const showHelpMessage = () =>
     Command usage:
     npm run test insertUser {username}
     npm run test lisbonUsers
-    npm run test lisbonStats
+    npm run test locationStats
  `);
 
 const cli = (args: Array<String>) => {
@@ -22,8 +23,12 @@ const cli = (args: Array<String>) => {
       }
       showHelpMessage();
       break;
+
     case 'lisbonUsers':
       return showLisbonUsersCommand();
+
+    case 'locationStats':
+      return showLocationStats();
 
     default:
       return showHelpMessage();
